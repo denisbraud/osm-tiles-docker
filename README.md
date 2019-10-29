@@ -55,6 +55,19 @@ $ docker-compose run --rm app-osm render
 $ docker-compose up -d
 ```
 
+### Creating .png format tiles
+
+By default, tiles are created in .meta format.  To convert these to .png format
+in an /z/x/y/ directory structure, run the following once the render process
+is complete:
+
+```sh
+$ docker-compose run --rm app-osm create-pngs
+```
+
+The tiles will be created in the _png_ directory within the nvtiles volume.
+
+
 ### Direct Usage
 
 Initialise if not already done (initdb+import+render) and Start OSM server (startservices)

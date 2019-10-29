@@ -150,6 +150,11 @@ RUN cd /tmp && git clone https://github.com/openstreetmap/mod_tile.git && \
     make install && \
     make install-mod_tile && \
     ldconfig && \
+    # Build to meta2tile utility and copy onto system path
+    cd extra && \
+    make && \
+    cp meta2tile /usr/local/bin && \
+    # Tidy up
     cd /tmp && rm -rf /tmp/mod_tile
 
 RUN cp -p /usr/local/etc/renderd.conf /usr/local/etc/renderd.conf.orig

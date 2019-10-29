@@ -170,6 +170,13 @@ startweb () {
     _startservice apache2
 }
 
+create_pngs () {
+    echo "Creating png tiles from .meta files using meta2tile"
+    mkdir /var/lib/mod_tile/png
+    chown www-data:www-data -R /var/lib/mod_tile/png
+    $asweb meta2tile /var/lib/mod_tile/default /var/lib/mod_tile/png
+}
+
 help () {
     cat /usr/local/share/doc/run/help.txt
     exit
