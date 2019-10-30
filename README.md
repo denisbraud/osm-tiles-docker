@@ -14,9 +14,9 @@ This is a **Docker** image that provides a full stack for working w/ **OpenStree
 
 This image is adapted from [`ncareol/osm-tiles-docker`](https://github.com/ncareol/osm-tiles-docker), which is based on [`homme/openstreetmap-tiles-docker`](https://hub.docker.com/r/homme/openstreetmap-tiles-docker/), which is based on the [Switch2OSM instructions](https://switch2osm.org/serving-tiles/manually-building-a-tile-server-14-04/).
 
-It runs **Ubuntu** 16.04 (Xenial) and is based on [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker). It includes:
+It runs **Ubuntu** 18.04 LTS (Bionic) and is based on [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker). It includes:
 
-- **PostgreSQL** `9.5`
+- **PostgreSQL** `10`
 - **PostGIS** extensions
 - **Apache** `2.4`
 - [**osm2pgsql**](http://wiki.openstreetmap.org/wiki/Osm2pgsql)
@@ -44,7 +44,6 @@ To persist the postgresql database and the generated tiles, it is advised to cre
 
 ```sh
 $ docker volume create --name nvpostgisdata -d local
-$ docker volume create --name nvtiles -d local
 ```
 
 Using [`Docker Compose`](https://docs.docker.com/compose/) and a dedicated [`docker-compose.yml`](https://docs.docker.com/compose/compose-file/) configuration file, zavpyj/osm-tiles is even simpler to use:
@@ -52,6 +51,7 @@ Using [`Docker Compose`](https://docs.docker.com/compose/) and a dedicated [`doc
 $ docker-compose run --rm app-osm initdb
 $ docker-compose run --rm app-osm import
 $ docker-compose run --rm app-osm render
+
 $ docker-compose up -d
 ```
 
@@ -62,10 +62,10 @@ in an /z/x/y/ directory structure, run the following once the render process
 is complete:
 
 ```sh
-$ docker-compose run --rm app-osm create-pngs
+$ docker-compose run --rm app-osm create_pngs
 ```
 
-The tiles will be created in the _png_ directory within the nvtiles volume.
+The tiles will be created in the _png_ directory within /c/data/osm.
 
 
 ### Direct Usage

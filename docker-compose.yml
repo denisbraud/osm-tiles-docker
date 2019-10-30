@@ -28,19 +28,19 @@ services:
       # keep postgresql database files on host in named volume "nvpostgisdata":
       - nvpostgisdata:/var/lib/postgresql
       # keep OSM tiles on host in named volume "nvtiles":
-      - nvtiles:/var/lib/mod_tile
+      - /c/data/osm:/var/lib/mod_tile
       # mount OSM data file from host into Docker container
       - ./bretagne-latest.osm.pbf:/tmp/import.osm.pbf
     environment:
       OSM_IMPORT_FILE: '/tmp/import.osm.pbf'
       OSM_IMPORT_CACHE: '8000'
-      OSM_RENDER_MIN_ZOOM: '10'
-      OSM_RENDER_MAX_ZOOM: '19'
+      OSM_RENDER_MIN_ZOOM: '13'
+      OSM_RENDER_MAX_ZOOM: '17'
       OSM_RENDER_THREADS: 4
-      OSM_RENDER_X_MIN: -1.73318
-      OSM_RENDER_X_MAX: -1.56313
-      OSM_RENDER_Y_MIN: 48.07221
-      OSM_RENDER_Y_MAX: 48.14671
+      OSM_RENDER_X_MIN: -1.80
+      OSM_RENDER_X_MAX: -1.61
+      OSM_RENDER_Y_MIN: 48.08
+      OSM_RENDER_Y_MAX: 48.16
       # To restrict acces according to specific keys in QUERY_STRING
       #  (in URLs like http://osmserver_hostname:osmserver_port/osm_tiles/{z}/{x}/{y}.png?keyId=abcdefghijklmnopqrstuvwxyz1234567890 - see sample file "test_with_keyId.html"),
       #  use OSM_WEB_AUTHORIZED_IDS (multiple values must be pipe ('|') separated):
@@ -53,5 +53,5 @@ services:
 volumes:
   nvpostgisdata:
     external: true
-  nvtiles:
-    external: true
+#  nvtiles:
+#    external: true
