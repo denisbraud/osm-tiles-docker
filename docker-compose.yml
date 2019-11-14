@@ -31,11 +31,13 @@ services:
       - /c/data/osm:/var/lib/mod_tile
       # mount OSM data file from host into Docker container
       - ./bretagne-latest.osm.pbf:/tmp/import.osm.pbf
+      # Custom openstreetmap-carto cartoCSS style
+      - ../openstreetmap-carto:/usr/share/mapnik/openstreetmap-carto
     environment:
       OSM_IMPORT_FILE: '/tmp/import.osm.pbf'
       OSM_IMPORT_CACHE: '8000'
       OSM_RENDER_MIN_ZOOM: '13'
-      OSM_RENDER_MAX_ZOOM: '17'
+      OSM_RENDER_MAX_ZOOM: '18'
       OSM_RENDER_THREADS: 4
       OSM_RENDER_X_MIN: -1.80
       OSM_RENDER_X_MAX: -1.61

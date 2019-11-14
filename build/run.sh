@@ -108,6 +108,9 @@ importappend () {
 
 # render tiles via render_list
 render () {
+    cd /usr/share/mapnik/openstreetmap-carto
+    carto project.mml > style.xml
+
     startdb
     _startservice renderd
     # wait for services to start

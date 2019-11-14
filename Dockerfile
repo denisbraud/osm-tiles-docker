@@ -92,22 +92,8 @@ RUN git clone --depth 1 --branch ${OSM2PGSQL_VERSION} https://github.com/openstr
     make && make install && \
     cd /tmp && rm -rf /tmp/osm2pgsql
 
-# Install CartoCSS template for OpenStreetMap data
+# Install CartoCSS
 RUN npm install -g carto@1.2.0
-ENV OSM_CARTO_VERSION 4.23.0
-RUN cd /tmp && \
-    wget https://github.com/gravitystorm/openstreetmap-carto/archive/v$OSM_CARTO_VERSION.tar.gz && \
-    tar -xzf v$OSM_CARTO_VERSION.tar.gz && \
-    rm -f v$OSM_CARTO_VERSION.tar.gz && \
-    mkdir /usr/share/mapnik && \
-    mv /tmp/openstreetmap-carto-$OSM_CARTO_VERSION /usr/share/mapnik/openstreetmap-carto && \
-    cd /usr/share/mapnik/openstreetmap-carto && \
-    ./scripts/get-shapefiles.py && \
-    cp project.mml project.mml.orig && \
-    carto project.mml > style.xml && \
-    find /usr/share/mapnik/openstreetmap-carto/data \( -type f -iname "*.zip" -o -iname "*.tgz" \) -delete
-
-COPY ./build/drop_indexes.sql /usr/share/mapnik/openstreetmap-carto/
 
 # Install mod_tile and renderd
 #We rely on the last commit of the switch2osm's branch at the time of this Dockerfile

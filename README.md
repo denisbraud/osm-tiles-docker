@@ -21,8 +21,18 @@ It runs **Ubuntu** 18.04 LTS (Bionic) and is based on [phusion/baseimage-docker]
 - **Apache** `2.4`
 - [**osm2pgsql**](http://wiki.openstreetmap.org/wiki/Osm2pgsql)
 - [**mapnik**](http://mapnik.org/)
-- [**openstreetmap-carto**](https://github.com/gravitystorm/openstreetmap-carto), a CartoCSS template (mapnik style) for OpenStreetMap data
 - [**mod_tile**](http://wiki.openstreetmap.org/wiki/Mod_tile), an **Apache** module that also provides scripts for rendering tiles
+
+## Prerequisite
+
+Tiles are built with a CartoCSS map style stored by default in `../openstreetmap-carto` (see docker-compose.xml).
+
+Clone, import and optionnaly customize with kosmtik as explained [here](https://github.com/gravitystorm/openstreetmap-carto/blob/master/DOCKER.md)
+
+**CartoCSS templates**
+- [**openstreetmap-carto**](https://github.com/gravitystorm/openstreetmap-carto), a CartoCSS template (mapnik style) for OpenStreetMap data
+- [**Humanitarian Data Model**](https://github.com/hotosm/HDM-CartoCSS)
+- [**Other alternatives**](https://github.com/gravitystorm/openstreetmap-carto/#alternatives)
 
 ## Usage
 
